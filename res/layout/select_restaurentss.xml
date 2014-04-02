@@ -13,22 +13,22 @@
         android:text="Select Your Restaurent"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <AutoCompleteTextView
-        android:id="@+id/restaurentabc"
-        android:layout_width="fill_parent"
+    <Spinner
+        android:id="@+id/resss"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-         />
+        android:layout_marginTop="21dp"
+        android:prompt="@string/select" />
 
     <Button
         android:id="@+id/res_proceed"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/restaurentabc"
-        android:layout_marginTop="15dp"
+        android:layout_below="@+id/resss"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
         android:text="Proceed" />
 
 </RelativeLayout>

@@ -64,7 +64,7 @@ public class FinalCart extends Activity implements OnClickListener{
 		//pass = (EditText)findViewById(R.id.password);
 		
 		//setup buttons
-		mSubmit = (Button)findViewById(R.id.button1);
+		mSubmit = (Button)findViewById(R.id.cartconfirm);
 		//mRegister = (Button)findViewById(R.id.register);
 		
 		//register listeners
@@ -108,15 +108,35 @@ public class FinalCart extends Activity implements OnClickListener{
 		protected String doInBackground(String... args) {
 			// TODO Auto-generated method stub
 			 // Check for success tag
-			JSONObject send = new JSONObject();
+			int success;
+			try{
+				
+			
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			for(int i=0;i<5;i++)
-			params.add(new BasicNameValuePair("res[]", Logic.restaurents[i]));
-			Log.d("request!", "starting");
+			params.add(new BasicNameValuePair("id", Logic.unique));
+			Log.d("sending cart id", "Starting....");
 			// getting product details by making HTTP request
 			JSONObject json = jsonParser.makeHttpRequest(
 			       LOGIN_URL, "POST", params);
 			Log.d("sending attempt", json.toString());
+			success = json.getInt(TAG_SUCCESS);
+			finish();
+            if (success == 1) {
+            	Log.d("Login Successful!", json.toString());
+            	//Logic.username=username;
+            	//Intent i = new Intent(SelectItem.this, SelectRes.class);
+            	//finish();
+				//startActivity(i);
+            	return json.getString(TAG_MESSAGE);
+            	
+            }else{
+            	Log.d("Login Failure!", json.getString(TAG_MESSAGE));
+            	
+            	return json.getString(TAG_MESSAGE);
+            	
+            	
+            
+        }
 			/*for(int i=0;i<3;i++){
 			send.put("resname", Logic.restaurents[i]);
 			send.put("itemname", "bla");
@@ -145,7 +165,10 @@ public class FinalCart extends Activity implements OnClickListener{
 			params.add(new BasicNameValuePair("res", json.toString()));
 			JSONObject json1 = jsonParser.makeHttpRequest(
 			           LOGIN_URL, "POST", params);
- */
+ */		}
+			catch (JSONException e) {
+                e.printStackTrace();
+            }
 			return null;
 		}
 		/**

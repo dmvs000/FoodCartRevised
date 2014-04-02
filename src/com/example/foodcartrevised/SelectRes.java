@@ -3,33 +3,60 @@ package com.example.foodcartrevised;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class SelectRes extends Activity {
-	
+	public String selectres;
 	private String hotel;
-	AutoCompleteTextView resselect;
+//	AutoCompleteTextView resselect;
 //	static Parcelable ress;
+	Spinner select;
+	String selectedres;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.select_restaurentss);
 		
+	
 		
-		final AutoCompleteTextView resselect=(AutoCompleteTextView)findViewById(R.id.restaurentabc);
+		select=(Spinner)findViewById(R.id.resss);
 		
 		String[] reslist={"Tycoon","GreenPark","Novotel"};
-		ArrayAdapter<String> resadapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,reslist);
+		ArrayAdapter<String> resadapter=new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, reslist);
+        select.setAdapter(resadapter);
 		
 		
 		
-		resselect.setAdapter(resadapter);
+	//	resselect.setAdapter(resadapter);
+        
+        
+        select.setOnItemSelectedListener(new OnItemSelectedListener() {
+        	 
+            @Override
+            public void onItemSelected(AdapterView<?> adapter, View v,
+                    int position, long id) {
+                // On selecting a spinner item
+                selectres = adapter.getItemAtPosition(position).toString();
+                Logic.ressel=selectres;
+                // Showing selected spinner item
+               Toast.makeText(getApplicationContext(),
+                        "Selected Res : " + selectres, Toast.LENGTH_LONG).show();
+            }
+ 
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+ 
+            }
+        });
 		
 		
 		Button resbu=(Button)findViewById(R.id.res_proceed);
@@ -37,10 +64,10 @@ public class SelectRes extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				 hotel= resselect.getText().toString();
+		//		 hotel= resselect.getText().toString();
 					
-				 Logic.restaurents[Logic.rescount]=hotel;
-				 Logic.selectedres=hotel;
+				 Logic.restaurents[Logic.rescount]=selectres;
+				 Logic.selectedres=selectres;
 				// Toast.makeText(SelectRes.this, Logic.selectedres, Toast.LENGTH_LONG).show();
 				 Intent iselect=new Intent(SelectRes.this,SelectItem.class);
 				 startActivity(iselect);

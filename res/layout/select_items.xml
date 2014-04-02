@@ -11,39 +11,44 @@
         android:text="Select Food Item"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-     <AutoCompleteTextView
-        android:id="@+id/fooditems"
-        android:layout_width="fill_parent"
+    <Spinner
+        android:id="@+id/itemse"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-         />
-
-     <Button
-         android:id="@+id/anotheritem"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:layout_below="@+id/fooditems"
-         android:layout_centerHorizontal="true"
-         android:layout_marginTop="45dp"
-         android:text="Select more items" />
+        android:prompt="@string/selectone" />
 
      <Button
          android:id="@+id/anotherrest"
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true"
-         android:layout_centerVertical="true"
+         android:layout_above="@+id/gotocart"
+         android:layout_alignParentLeft="true"
+         android:layout_marginBottom="16dp"
          android:text="Select other Restaurent" />
 
      <Button
-         android:id="@+id/gotocart"
+         android:id="@+id/anotheritem"
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
+         android:layout_above="@+id/anotherrest"
          android:layout_alignParentLeft="true"
-         android:layout_below="@+id/anotherrest"
-         android:layout_marginTop="16dp"
-         android:text="Go to Cart" />
+         android:layout_marginBottom="14dp"
+         android:text="Select more items" />
+
+    
+
+      <Button
+          android:id="@+id/gotocart"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentBottom="true"
+          android:layout_alignParentLeft="true"
+          android:layout_marginBottom="40dp"
+          android:text="Go to Cart" />
+
+     
 
 </RelativeLayout>

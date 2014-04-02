@@ -193,31 +193,32 @@ containing a value of this type.
         public static final int ColTel=0x7f050020;
         public static final int LinearLayout1=0x7f05001c;
         public static final int TextView01=0x7f050017;
-        public static final int action_settings=0x7f05002e;
+        public static final int action_settings=0x7f05002f;
         public static final int address=0x7f05000b;
         public static final int ai=0x7f050021;
-        public static final int anotheritem=0x7f050026;
+        public static final int anotheritem=0x7f050029;
         public static final int anotherrest=0x7f050027;
         public static final int btnSubmit=0x7f050022;
-        public static final int button1=0x7f050012;
-        public static final int content_label=0x7f05002c;
-        public static final int date_label=0x7f05002d;
+        public static final int cartconfirm=0x7f050012;
+        public static final int content_label=0x7f05002d;
+        public static final int date_label=0x7f05002e;
         public static final int deal=0x7f050010;
         public static final int display=0x7f050005;
-        public static final int fooditems=0x7f050025;
         public static final int gotocart=0x7f050028;
         public static final int gyro=0x7f050011;
         public static final int hybrid=0x7f050004;
         public static final int imageView1=0x7f050016;
+        public static final int itemse=0x7f050026;
         public static final int linearLayout1=0x7f05001d;
         public static final int login=0x7f050014;
         public static final int name=0x7f05000f;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
+        public static final int passone=0x7f050023;
         public static final int password=0x7f050015;
         public static final int register=0x7f050013;
-        public static final int res_proceed=0x7f05002a;
-        public static final int restaurentabc=0x7f050029;
+        public static final int res_proceed=0x7f05002b;
+        public static final int resss=0x7f05002a;
         public static final int satellite=0x7f050002;
         public static final int spinner1=0x7f05001b;
         public static final int tableLayout1=0x7f050019;
@@ -230,10 +231,10 @@ containing a value of this type.
         public static final int textView5=0x7f050008;
         public static final int textView6=0x7f05000c;
         public static final int textView7=0x7f05000a;
-        public static final int title_label=0x7f05002b;
+        public static final int title_label=0x7f05002c;
         public static final int username=0x7f050018;
-        public static final int username1=0x7f050023;
-        public static final int username2=0x7f050024;
+        public static final int username1=0x7f050024;
+        public static final int username2=0x7f050025;
         public static final int valid=0x7f050007;
     }
     public static final class layout {
@@ -353,6 +354,9 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f060012;
         public static final int gyro=0x7f06001c;
         public static final int hello_world=0x7f06001b;
+        public static final int qty=0x7f06001f;
+        public static final int select=0x7f06001d;
+        public static final int selectone=0x7f06001e;
     }
     public static final class style {
         /** 

@@ -5,5 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="gyro">Gyro</string>
+    <string name="select">Restaurents</string>
+    <string name="selectone">Food Items</string>
+    <string name="qty">Qty</string>
 
 </resources>

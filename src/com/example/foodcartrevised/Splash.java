@@ -1,7 +1,9 @@
 package com.example.foodcartrevised;
-
-
-
+/* http://techlovejump.in/2013/11/android-push-notification-using-google-cloud-messaging-gcm-php-google-play-service-library/
+ * techlovejump.in
+ * tutorial link
+ * 
+ *  */
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -15,27 +17,27 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.example.foodcartrevised.Login;
+import com.example.foodcartrevised.Splash;
+
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.drawable.AnimationDrawable;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 public class Splash extends Activity {
+	
 	public static final String EXTRA_MESSAGE = "message";
     public static final String PROPERTY_REG_ID = "registration_id";
     private static final String PROPERTY_APP_VERSION = "appVersion";
@@ -43,31 +45,22 @@ public class Splash extends Activity {
    // please enter your sender id
     String SENDER_ID = "41822054087";
     
-    static final String TAG = "GCMDemo";
+    static final String TAG = "Food Cart";
     GoogleCloudMessaging gcm;
  
- //   TextView mDisplay;
+    TextView mDisplay;
     Context context;
     String regid;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_splash);
-		
-		//ImageView gyroView = (ImageView) findViewById(R.id.gyro);
-		//gyroView.setBackgroundResource(R.drawable.roundround);
-		//AnimationDrawable gyroAnimation= (AnimationDrawable)gyroView.getBackground();
-		//gyroAnimation.start();
-		
-		
-		
-	//	mDisplay = (TextView) findViewById(R.id.display);
+		setContentView(R.layout.activity_main);
+		mDisplay = (TextView) findViewById(R.id.display);
 		context = getApplicationContext();
 		if(checkPlayServices()){
 			gcm = GoogleCloudMessaging.getInstance(this);
 			regid = getRegistrationId(context);
-//			mDisplay.setText(regid);
+			mDisplay.setText(regid);
 			if(regid.isEmpty()){
 				new RegisterBackground().execute();
 			}
@@ -78,14 +71,13 @@ public class Splash extends Activity {
 				startActivity(new  Intent(Splash.this,Login.class));
 				finish();
 			}
-		}, 6*1000);
-		
+		}, 3*1000);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.splash, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 	@Override
@@ -105,7 +97,7 @@ public class Splash extends Activity {
                 }
                 regid = gcm.register(SENDER_ID);
                 msg = "Dvice registered, registration ID=" + regid;
-                Log.d("Device Registered Successfully", msg);
+                Log.d("111", msg);
                 sendRegistrationIdToBackend();
                 
                 // Persist the regID - no need to register again.
@@ -118,7 +110,7 @@ public class Splash extends Activity {
 		
 		@Override
         protected void onPostExecute(String msg) {
-   //         mDisplay.append(msg + "\n");
+            mDisplay.append(msg + "\n");
             
         }
 		private void sendRegistrationIdToBackend() {
@@ -168,7 +160,7 @@ public class Splash extends Activity {
 	            GooglePlayServicesUtil.getErrorDialog(resultCode, this,
 	                    PLAY_SERVICES_RESOLUTION_REQUEST).show();
 	        } else {
-	            Log.i(TAG, "Install Google Play Services to Receive Updates");
+	            Log.i(TAG, "This device is not supported.");
 	            finish();
 	        }
 	        return false;
@@ -194,7 +186,7 @@ public class Splash extends Activity {
 	
 	private SharedPreferences getGCMPreferences(Context context) {
 	    
-	    return getSharedPreferences(Splash.class.getSimpleName(),
+	    return getSharedPreferences(MainActivity.class.getSimpleName(),
 	            Context.MODE_PRIVATE);
 	}
 	
@@ -208,6 +200,5 @@ public class Splash extends Activity {
 	        throw new RuntimeException("Could not get package name: " + e);
 	    }
 	}
+
 }
-
-

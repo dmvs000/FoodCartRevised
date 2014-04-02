@@ -52,13 +52,13 @@ public class Login extends Activity implements OnClickListener{
     //JSON element ids from repsonse of php script:
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
-	
+    public static String myuser="";
+	public String uniq="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-		
 		//setup input fields
 		user = (EditText)findViewById(R.id.username);
 		pass = (EditText)findViewById(R.id.password);
@@ -81,6 +81,10 @@ public class Login extends Activity implements OnClickListener{
 		if(isInternetPresent){
 		switch (v.getId()) {
 		case R.id.login:
+				//myuser=user.getText().toString();
+				//Log.d("request!", myuser);
+				uniq=Unique.getUnique();
+				//Logic.unique=uniq;
 				new AttemptLogin().execute();
 			break;
 		case R.id.register:
@@ -140,7 +144,9 @@ public class Login extends Activity implements OnClickListener{
                 success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                 	Log.d("Login Successful!", json.toString());
+                	
                 	Logic.username=username;
+                	Logic.unique=uniq;
                 	Intent i = new Intent(Login.this, SelectRes.class);
                 	finish();
     				startActivity(i);

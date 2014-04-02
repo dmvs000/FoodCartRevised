@@ -39,8 +39,28 @@
 	    android:layout_margin="5dip"
 	    android:layout_marginBottom="15dip"
 	    android:singleLine="true"
-	  
+	 	android:inputType="textPassword" 
 	    />
+
+	<TextView
+	    android:id="@+id/textView1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Re-Type Password"
+	     android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="10dip"
+        android:textSize="17dip" />
+	
+	 <EditText android:id="@+id/passone"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="5dip"
+	    android:layout_marginBottom="15dip"
+	    android:singleLine="true"
+	   android:inputType="textPassword"
+	    />
+	
 	
 	 <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"

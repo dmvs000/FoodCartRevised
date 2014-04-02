@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 public class Register extends Activity implements OnClickListener{
 	
-	private EditText user, pass,addr,ph;
+	private EditText user, pass,addr,ph,passone;
 	private Button  mRegister;
 	
 	 // Progress Dialog
@@ -60,6 +60,7 @@ public class Register extends Activity implements OnClickListener{
 		pass = (EditText)findViewById(R.id.password);
 		addr = (EditText)findViewById(R.id.username2);
 		ph = (EditText)findViewById(R.id.username1);
+		passone=(EditText)findViewById(R.id.passone);
 		
 		
 
@@ -75,7 +76,15 @@ public class Register extends Activity implements OnClickListener{
 		isInternetPresent = cd.isConnectingToInternet();
 		if(isInternetPresent)
 		{
+			String password = pass.getText().toString();
+			   String passonea=passone.getText().toString();
+			   if(passonea.equals(password)){
+			
 				new CreateUser().execute();
+			   }
+			   else{
+				   Toast.makeText(Register.this, "Passwords doesn't match", Toast.LENGTH_LONG).show();
+			   }
 		}
 		else
 		{
@@ -109,7 +118,10 @@ public class Register extends Activity implements OnClickListener{
             String password = pass.getText().toString();
             String addrs = addr.getText().toString();
             String pha = ph.getText().toString();
+            String passonea=passone.getText().toString();
             Log.d("Entered ", "hello");
+            
+      //      if(password.equals(passonea)){
             
             try {
                 // Building Parameters
@@ -147,6 +159,7 @@ public class Register extends Activity implements OnClickListener{
             return null;
 			
 		}
+
 		/**
          * After completing background task Dismiss the progress dialog
          * **/
@@ -156,6 +169,8 @@ public class Register extends Activity implements OnClickListener{
             if (file_url != null){
             	Toast.makeText(Register.this, file_url, Toast.LENGTH_LONG).show();
             }
+            
+        
  
         }
 		

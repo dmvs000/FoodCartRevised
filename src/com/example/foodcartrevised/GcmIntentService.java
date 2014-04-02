@@ -22,7 +22,7 @@ public class GcmIntentService extends IntentService{
 	public static final int NOTIFICATION_ID = 1;
     private NotificationManager mNotificationManager;
     NotificationCompat.Builder builder;
-    public static final String TAG = "GCM Demo";
+    public static final String TAG = "Food Cart Messaging";
 
 	public GcmIntentService() {
 		super("GcmIntentService");
