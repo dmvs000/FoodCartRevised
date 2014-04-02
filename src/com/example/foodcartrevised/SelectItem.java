@@ -65,10 +65,12 @@ public class SelectItem extends Activity {
 		String[] Tycoon={"Idly","Dosa","poori"};
 		String[] GreenPark={"Tandoori","Gulabjamun","Rasgulla"};
 		String[] Novotel={"Panipoori","Rasmalai"};
+		String[] Daspalla={"something","npthng"};
 		String[] Qty={"one","two","three","four","five","six"};
 		String test="Tycoon";
 		String test1="GreenPark";
 		String test2="Novotel";
+		String test3="Daspalla";
 		quantity=Qty[0];
 		itemone=Novotel[0];
 		itemitem=(Spinner)findViewById(R.id.itemse);
@@ -149,6 +151,13 @@ public class SelectItem extends Activity {
         	 itemone=Novotel[0];
         	  resadapter=new ArrayAdapter<String>(this,
 		                android.R.layout.simple_spinner_item, Novotel);
+			  resadapter.notifyDataSetChanged();
+			  itemitem.setAdapter(resadapter);
+         }
+         if(Logic.selectedres.equals(test3)){
+        	 itemone=Daspalla[0];
+       	  resadapter=new ArrayAdapter<String>(this,
+		                android.R.layout.simple_spinner_item, Daspalla);
 			  resadapter.notifyDataSetChanged();
 			  itemitem.setAdapter(resadapter);
          }
