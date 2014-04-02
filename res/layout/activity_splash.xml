@@ -12,8 +12,6 @@
           android:id="@+id/gyro"
           android:layout_width="fill_parent"
           android:layout_height="fill_parent"
-          android:src="@drawable/fc"
-          android:scaleType="fitXY"
-          android:contentDescription="@string/gyro" />
+          android:src="@drawable/fc" />
 
 </RelativeLayout>

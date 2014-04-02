@@ -28,7 +28,22 @@ public class SelectRes extends Activity {
 		
 		select=(Spinner)findViewById(R.id.resss);
 		
-		String[] reslist={"Tycoon","GreenPark","Novotel"};
+		String[] reslist={	"Tycoon",
+							"GreenPark",
+							"Novotel",
+							"Daspalla",
+							"Laddu Gopal",
+							"Brindavanam",
+							"Sizzlers",
+							"Dominos, Siripruam",
+							"Dominos, Central",
+							"Pizza Hut",
+							"Tandori Inn",
+							"Sai Ram Parlour",
+							"Meghalaya",
+							"Roayal Fort",
+							"Fortune Inn"};
+		selectedres=reslist[0];
 		ArrayAdapter<String> resadapter=new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, reslist);
         select.setAdapter(resadapter);

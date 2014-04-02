@@ -11,15 +11,6 @@
         android:text="Select Food Item"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Spinner
-        android:id="@+id/itemse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:prompt="@string/selectone" />
-
      <Button
          android:id="@+id/anotherrest"
          android:layout_width="fill_parent"
@@ -49,6 +40,31 @@
           android:layout_marginBottom="40dp"
           android:text="Go to Cart" />
 
-     
+      <TextView
+          android:id="@+id/textView2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_below="@+id/itemse"
+          android:text="Quantity"
+          android:textAppearance="?android:attr/textAppearanceLarge" />
+
+      <Spinner
+          android:id="@+id/itemse"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_below="@+id/textView1"
+          android:layout_marginTop="14dp"
+          android:prompt="@string/selectone" />
+      
+       <Spinner
+          android:id="@+id/qntyy"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_below="@+id/textView2"
+          android:layout_marginTop="14dp"
+          android:prompt="@string/qty" />
 
 </RelativeLayout>

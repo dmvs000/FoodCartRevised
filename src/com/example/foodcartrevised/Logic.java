@@ -12,6 +12,7 @@ public class Logic {
 	public static String username="";
 	public static String unique="";
 	public static String ressel="";
+	public static String regid="";
 	
 	
 }

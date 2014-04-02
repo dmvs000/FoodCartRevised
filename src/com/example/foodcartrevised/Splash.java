@@ -54,16 +54,18 @@ public class Splash extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		mDisplay = (TextView) findViewById(R.id.display);
+		setContentView(R.layout.activity_splash);
+		//mDisplay = (TextView) findViewById(R.id.display);
 		context = getApplicationContext();
 		if(checkPlayServices()){
 			gcm = GoogleCloudMessaging.getInstance(this);
 			regid = getRegistrationId(context);
-			mDisplay.setText(regid);
+			//mDisplay.setText(regid);
 			if(regid.isEmpty()){
 				new RegisterBackground().execute();
 			}
+			else
+				Logic.regid=regid;
 			
 		}
 		new Handler().postDelayed(new Runnable(){
@@ -97,6 +99,7 @@ public class Splash extends Activity {
                 }
                 regid = gcm.register(SENDER_ID);
                 msg = "Dvice registered, registration ID=" + regid;
+                Logic.regid=regid;
                 Log.d("111", msg);
                 sendRegistrationIdToBackend();
                 

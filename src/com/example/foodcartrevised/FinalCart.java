@@ -43,7 +43,7 @@ public class FinalCart extends Activity implements OnClickListener{
    // private static final String LOGIN_URL = "http://xxx.xxx.x.x:1234/webservice/login.php";
     
     //testing on Emulator:
-    private static final String LOGIN_URL = "http://kitesdevelopers.com/foodcart/subbu.php";
+    private static final String LOGIN_URL = "http://kitesdevelopers.com/foodcart/entry2.php";
     private static final String LOGIN_URLSQL = "http://kitesdevelopers.com/foodcart/SQL1.php";
     Boolean isInternetPresent = false;
   //testing from a real server:
@@ -98,9 +98,9 @@ public class FinalCart extends Activity implements OnClickListener{
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(FinalCart.this);
-            pDialog.setMessage("Sending Cart for billing.. ");
+            pDialog.setMessage("Sending Cart.. Please Wait ");
             pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 		
@@ -114,13 +114,14 @@ public class FinalCart extends Activity implements OnClickListener{
 			
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("id", Logic.unique));
+			params.add(new BasicNameValuePair("regid", Logic.regid));
+			params.add(new BasicNameValuePair("username", Logic.username));
 			Log.d("sending cart id", "Starting....");
 			// getting product details by making HTTP request
 			JSONObject json = jsonParser.makeHttpRequest(
 			       LOGIN_URL, "POST", params);
 			Log.d("sending attempt", json.toString());
 			success = json.getInt(TAG_SUCCESS);
-			finish();
             if (success == 1) {
             	Log.d("Login Successful!", json.toString());
             	//Logic.username=username;
@@ -177,8 +178,9 @@ public class FinalCart extends Activity implements OnClickListener{
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once product deleted
             pDialog.dismiss();
+            finish();
             if (file_url != null){
-            	Toast.makeText(FinalCart.this, file_url, Toast.LENGTH_LONG).show();
+            	Toast.makeText(FinalCart.this, "Successfull. ThankYou", Toast.LENGTH_LONG).show();
             }
  
         }

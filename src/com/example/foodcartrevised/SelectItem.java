@@ -37,14 +37,19 @@ public class SelectItem extends Activity {
 //	AutoCompleteTextView itemselect;
 	private String itemone;
 	Spinner itemitem;
+	String quantity;
+	Spinner qnty;
 	//Spinner qtyq;
 	//String qtyitem;
 	ArrayAdapter<String> resadapter;
+	
+	ArrayAdapter<String> qtyadapter;
 	//ArrayAdapter<String> qtyadapter;
 	private static final String LOGIN_URL = "http://kitesdevelopers.com/foodcart/entry.php";
 	Boolean isInternetPresent = false;
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
+    public String getwhat="";
 	
 	
 //	String[] Tycoon={"Idly","Dosa","poori"};
@@ -60,12 +65,94 @@ public class SelectItem extends Activity {
 		String[] Tycoon={"Idly","Dosa","poori"};
 		String[] GreenPark={"Tandoori","Gulabjamun","Rasgulla"};
 		String[] Novotel={"Panipoori","Rasmalai"};
-		
+		String[] Qty={"one","two","three","four","five","six"};
+		String test="Tycoon";
+		String test1="GreenPark";
+		String test2="Novotel";
+		quantity=Qty[0];
+		itemone=Novotel[0];
 		itemitem=(Spinner)findViewById(R.id.itemse);
 		resadapter=new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, Novotel);
 		//qtyq=(Spinner)findViewById(R.id.qtyq);
 		itemitem.setAdapter(resadapter);
+		
+	//	itemitem.setAdapter(resadapter);
+		  itemitem.setOnItemSelectedListener(new OnItemSelectedListener() {
+	        	 
+	            @Override
+	            public void onItemSelected(AdapterView<?> adapter, View v,
+	                    int position, long id) {
+	                // On selecting a spinner item
+	                itemone = adapter.getItemAtPosition(position).toString();
+	 
+	                // Showing selected spinner item
+	              //  Toast.makeText(getApplicationContext(),
+	               //         "Selected Country : " + item, Toast.LENGTH_LONG).show();
+	            }
+	 
+	            @Override
+	            public void onNothingSelected(AdapterView<?> arg0) {
+	                // TODO Auto-generated method stub
+	 
+	            }
+	        });   
+		  
+		  
+		  qnty=(Spinner)findViewById(R.id.qntyy);
+			qtyadapter=new ArrayAdapter<String>(this,
+	                android.R.layout.simple_spinner_item, Qty);
+			//qtyq=(Spinner)findViewById(R.id.qtyq);
+			qnty.setAdapter(qtyadapter);
+			
+		//	itemitem.setAdapter(resadapter);
+			  qnty.setOnItemSelectedListener(new OnItemSelectedListener() {
+		        	 
+		            @Override
+		            public void onItemSelected(AdapterView<?> adapter, View v,
+		                    int position, long id) {
+		                // On selecting a spinner item
+		                quantity = adapter.getItemAtPosition(position).toString();
+		 
+		                // Showing selected spinner item
+		              //  Toast.makeText(getApplicationContext(),
+		               //         "Selected Country : " + item, Toast.LENGTH_LONG).show();
+		            }
+		 
+		            @Override
+		            public void onNothingSelected(AdapterView<?> arg0) {
+		                // TODO Auto-generated method stub
+		 
+		            }
+		        });   
+		  
+		  if(Logic.selectedres.equals(test)){
+			  itemone=Tycoon[0];
+			  resadapter=new ArrayAdapter<String>(this,
+		                android.R.layout.simple_spinner_item, Tycoon);
+			  resadapter.notifyDataSetChanged();
+			  itemitem.setAdapter(resadapter);
+			  
+			  
+		  }
+		  
+		  if(Logic.selectedres.equals(test1)){
+			  itemone=GreenPark[0];
+			  resadapter=new ArrayAdapter<String>(this,
+		                android.R.layout.simple_spinner_item, GreenPark);
+			  resadapter.notifyDataSetChanged();
+			  itemitem.setAdapter(resadapter);
+		  }
+		  
+		  
+         if(Logic.selectedres.equals(test2)){
+        	 itemone=Novotel[0];
+        	  resadapter=new ArrayAdapter<String>(this,
+		                android.R.layout.simple_spinner_item, Novotel);
+			  resadapter.notifyDataSetChanged();
+			  itemitem.setAdapter(resadapter);
+         }
+		
 		//String test="Tycoon";
 		//String test1="GreenPark";
 		//String test2="Novotel";
@@ -209,7 +296,7 @@ public class SelectItem extends Activity {
 		
 		
 		
-		itemitem.setAdapter(resadapter);
+/*		itemitem.setAdapter(resadapter);
 		  itemitem.setOnItemSelectedListener(new OnItemSelectedListener() {
 	        	 
 	            @Override
@@ -228,7 +315,7 @@ public class SelectItem extends Activity {
 	                // TODO Auto-generated method stub
 	 
 	            }
-	        });   
+	        });     */
 		
 		
 		Button anoitem=(Button)findViewById(R.id.anotheritem);
@@ -244,7 +331,7 @@ public class SelectItem extends Activity {
 	//				itemselect.setText("");
 					cd = new ConnectionDetector(getApplicationContext());
 					isInternetPresent = cd.isConnectingToInternet();
-					if(isInternetPresent){
+					if(isInternetPresent){	
 					itemselected=itemone;
 					new AttemptLogin().execute();
 					}
@@ -272,20 +359,27 @@ public class SelectItem extends Activity {
 				Logic.rescount++;
 				cd = new ConnectionDetector(getApplicationContext());
 				isInternetPresent = cd.isConnectingToInternet();
-				if(isInternetPresent){
 				itemselected=itemone;
-				new AttemptLogin().execute();
-				Intent arselect=new Intent(SelectItem.this,SelectRes.class);
-				//	Bundle b=new Bundle();
-				//	b.putParcelable("resname",ress);
-				//	iselect.putExtras(b);
-					startActivity(arselect);
-					finish();
-				}
+				if(isInternetPresent){
+					getwhat="anotherres";
+					itemselected=itemone;
+					new AttemptLogin().execute();
+					}
 					else
 					{
 						Toast.makeText(SelectItem.this, "Please Check You Internet Connectivity!", Toast.LENGTH_LONG).show();
 					}
+				
+				//Intent arselect=new Intent(SelectItem.this,SelectRes.class);
+				//startActivity(arselect);
+				//finish();
+//					Bundle b=new Bundle();
+					//	b.putParcelable("resname",ress);
+					//	iselect.putExtras(b);
+				//	else
+					//{
+						//Toast.makeText(SelectItem.this, "Please Check You Internet Connectivity!", Toast.LENGTH_LONG).show();
+					//}
 				
 			}
 		});
@@ -300,22 +394,26 @@ public class SelectItem extends Activity {
 				int red=Logic.itemcount;
 				//Logic.qty[Logic.rescount][red]=qtyitem;
 				Logic.items[Logic.rescount][red]=itemone;
-				Logic.itemcount++;
+			//	Logic.itemcount++;
 				cd = new ConnectionDetector(getApplicationContext());
 				isInternetPresent = cd.isConnectingToInternet();
-				if(isInternetPresent){
 				itemselected=itemone;
-				new AttemptLogin().execute();
-				Intent gotocart=new Intent(SelectItem.this,FinalCart.class);
-				startActivity(gotocart);
-				finish();
-				}
-				else
-				{
-					Toast.makeText(SelectItem.this, "Please Check You Internet Connectivity!", Toast.LENGTH_LONG).show();
+				if(isInternetPresent){
+					getwhat="gotocart";
+					itemselected=itemone;
+					new AttemptLogin().execute();
+					}
+					else
+					{
+						Toast.makeText(SelectItem.this, "Please Check You Internet Connectivity!", Toast.LENGTH_LONG).show();
+					}
+				//new AttemptLogin().execute();
+				//Intent gotocart=new Intent(SelectItem.this,FinalCart.class);
+				//startActivity(gotocart);
+				//finish();
 				}
 				
-			}
+			
 		});
 		
 	}	
@@ -335,7 +433,7 @@ public class SelectItem extends Activity {
 	            pDialog = new ProgressDialog(SelectItem.this);
 	            pDialog.setMessage("Saving to Cart");
 	            pDialog.setIndeterminate(false);
-	            pDialog.setCancelable(true);
+	            pDialog.setCancelable(false);
 	            pDialog.show();
 	        }
 			
@@ -351,7 +449,7 @@ public class SelectItem extends Activity {
 	                List<NameValuePair> params = new ArrayList<NameValuePair>();
 	                params.add(new BasicNameValuePair("item", itemselected));
 	                params.add(new BasicNameValuePair("resname", Logic.selectedres));
-	                params.add(new BasicNameValuePair("quantity", qty));
+	                params.add(new BasicNameValuePair("quantity", quantity));
 	                params.add(new BasicNameValuePair("username", Logic.username));
 	                params.add(new BasicNameValuePair("id", Logic.unique));
 	 
@@ -366,7 +464,19 @@ public class SelectItem extends Activity {
 	 
 	                // json success tag
 	                success = json.getInt(TAG_SUCCESS);
-	                if (success == 1) {
+	                if(getwhat.equals("anotherres"))
+	                {
+					Intent arselect=new Intent(SelectItem.this,SelectRes.class);
+					startActivity(arselect);
+					finish();
+	                }
+	                if(getwhat.equals("gotocart"))
+	                {
+					Intent gotocart=new Intent(SelectItem.this,FinalCart.class);
+					startActivity(gotocart);
+					finish();
+	                }
+					if (success == 1) {
 	                	Log.d("Login Successful!", json.toString());
 	                	//Logic.username=username;
 	                	//Intent i = new Intent(SelectItem.this, SelectRes.class);
@@ -395,10 +505,14 @@ public class SelectItem extends Activity {
 	            // dismiss the dialog once product deleted
 	            pDialog.dismiss();
 	            if (file_url != null){
-	            	Toast.makeText(SelectItem.this, file_url, Toast.LENGTH_LONG).show();
+	            	Toast.makeText(SelectItem.this, "Done", Toast.LENGTH_LONG).show();
 	            }
 	 
 	        }		
+	        public void onFinish()
+	        {
+	        	pDialog.dismiss();
+	        }
 		
 	
 
