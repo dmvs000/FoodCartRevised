@@ -5,26 +5,26 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class FinalCart extends Activity implements OnClickListener{
 	
-	private EditText user, pass;
-	private Button mSubmit, mRegister;
+	//private EditText user, pass;
+	private Button mSubmit;
 	
 	 // Progress Dialog
     private ProgressDialog pDialog;
@@ -33,7 +33,7 @@ public class FinalCart extends Activity implements OnClickListener{
     JSONParser jsonParser = new JSONParser();
     JSONParserFetchRes jsonParser1 = new JSONParserFetchRes();
     ConnectionDetector cd;
-    private String[] restaurants;
+    //private String[] restaurants;
     //php login script location:
     
     //localhost :  
@@ -44,7 +44,7 @@ public class FinalCart extends Activity implements OnClickListener{
     
     //testing on Emulator:
     private static final String LOGIN_URL = "http://kitesdevelopers.com/foodcart/entry2.php";
-    private static final String LOGIN_URLSQL = "http://kitesdevelopers.com/foodcart/SQL1.php";
+    //private static final String LOGIN_URLSQL = "http://kitesdevelopers.com/foodcart/SQL1.php";
     Boolean isInternetPresent = false;
   //testing from a real server:
     //private static final String LOGIN_URL = "http://www.yourdomain.com/webservice/login.php";
@@ -52,13 +52,21 @@ public class FinalCart extends Activity implements OnClickListener{
     //JSON element ids from repsonse of php script:
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
+    ListView list;
+    
+    CustomAdapter adapter;
+    public FinalCart CustomListView = null;
+    public  ArrayList<ListModel> CustomListViewValuesArr = new ArrayList<ListModel>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		Log.d("Before Custom Adapter Initialization" , "Bla");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.finalcart);
-		
+		TextView mText = (TextView)findViewById(R.id.carttextview);
+		mText.setText("200");
+		Log.d("After Layout Initialization" , "Bla");
 		//setup input fields
 		//user = (EditText)findViewById(R.id.username);
 		//pass = (EditText)findViewById(R.id.password);
@@ -70,8 +78,50 @@ public class FinalCart extends Activity implements OnClickListener{
 		//register listeners
 		mSubmit.setOnClickListener(this);
 		//mRegister.setOnClickListener(this);
+         
+        CustomListView = this;
+         
+        /******** Take some data in Arraylist ( CustomListViewValuesArr ) ***********/
+        setListData();
+        Log.d("Before Error", "for ");
+     /*   for(int i=0;i<Logic.rescount;i++)
+		{
+			Log.d("item", Logic.restaurents[i]);
+			for(int j=0;j<Logic.item[i].length;j++)
+				Log.d("item", Logic.item[i][j]);
+		}*/
+        Resources res =getResources();
+        list= ( ListView )findViewById( R.id.list );  // List defined in XML ( See Below )
+         
+        /**************** Create Custom Adapter *********/
+        adapter=new CustomAdapter( CustomListView, CustomListViewValuesArr,res );
+        list.setAdapter( adapter );
 		
 	}
+	public void setListData()
+    {
+         
+        for (int i = 0; i <=Logic.myrestaurantcount; i++) {
+             
+            final ListModel sched = new ListModel();
+                 
+              /******* Firstly take data in model object ******/
+               sched.setCompanyName("--Restaurant--> "+Logic.myitem[i][0]);
+               sched.setUrl("--- ITEMS ---   ");
+               CustomListViewValuesArr.add( sched );
+               for(int j=1;j<Logic.myitemc[i]+1;j++)
+               {
+            	   final ListModel sched1 = new ListModel();
+            	   sched1.setUrl("              "+Logic.myitem[i][j]);
+                
+            /******** Take Model Object in ArrayList **********/
+            CustomListViewValuesArr.add( sched1 );
+               }
+               
+        }
+         
+    }
+
 
 	@Override
 	public void onClick(View v) {

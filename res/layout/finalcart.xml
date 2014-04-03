@@ -1,13 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <Button
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".CustomListViewAndroidExample" >
+     
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" 
+            android:layout_weight="1">
+        
+        
+        </ListView>
+         
+         <Button
         android:id="@+id/cartconfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirm" />
+        android:text="Confirm"
+        />
+         <TextView android:id="@+id/carttextview"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
 
-</LinearLayout>
+             />
+     
+ </LinearLayout>

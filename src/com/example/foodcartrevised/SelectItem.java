@@ -342,6 +342,10 @@ public class SelectItem extends Activity {
 					isInternetPresent = cd.isConnectingToInternet();
 					if(isInternetPresent){	
 					itemselected=itemone;
+					Logic.myitemc[Logic.myrestaurantcount]=Logic.myresitemcount;
+					Logic.myitem[Logic.myrestaurantcount][Logic.myresitemcount++]=itemone;
+					Log.d("Button Selected","Another Item");
+					//Log.d("value of resc and resci", Logic.resc+" "+Logic.resci);
 					new AttemptLogin().execute();
 					}
 					else
@@ -369,11 +373,19 @@ public class SelectItem extends Activity {
 				cd = new ConnectionDetector(getApplicationContext());
 				isInternetPresent = cd.isConnectingToInternet();
 				itemselected=itemone;
+				
+				
 				if(isInternetPresent){
 					getwhat="anotherres";
 					itemselected=itemone;
 					new AttemptLogin().execute();
-					}
+					Logic.myitemc[Logic.myrestaurantcount]=Logic.myresitemcount;
+					Logic.myitem[Logic.myrestaurantcount][Logic.myresitemcount++]=itemone;
+					Logic.myrestaurantcount++;
+					//Logic.resci=0;
+					Log.d("Button Selected","Another restaurant");
+					//Log.d("value of resc and resci", Logic.resc+" "+Logic.resci);
+				}
 					else
 					{
 						Toast.makeText(SelectItem.this, "Please Check You Internet Connectivity!", Toast.LENGTH_LONG).show();
@@ -407,9 +419,15 @@ public class SelectItem extends Activity {
 				cd = new ConnectionDetector(getApplicationContext());
 				isInternetPresent = cd.isConnectingToInternet();
 				itemselected=itemone;
+				
 				if(isInternetPresent){
 					getwhat="gotocart";
 					itemselected=itemone;
+					Log.d("Button Selected","Go To cart");
+					Logic.myitemc[Logic.myrestaurantcount]=Logic.myresitemcount;
+					Logic.myitem[Logic.myrestaurantcount][Logic.myresitemcount++]=itemone;
+					
+					//Log.d("value of resc and resci", Logic.resc+" "+Logic.resci);
 					new AttemptLogin().execute();
 					}
 					else

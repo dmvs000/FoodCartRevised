@@ -83,6 +83,8 @@ public class SelectRes extends Activity {
 					
 				 Logic.restaurents[Logic.rescount]=selectres;
 				 Logic.selectedres=selectres;
+				 Logic.myresitemcount=1;
+				 Logic.myitem[Logic.myrestaurantcount][0]=selectres;
 				// Toast.makeText(SelectRes.this, Logic.selectedres, Toast.LENGTH_LONG).show();
 				 Intent iselect=new Intent(SelectRes.this,SelectItem.class);
 				 startActivity(iselect);
