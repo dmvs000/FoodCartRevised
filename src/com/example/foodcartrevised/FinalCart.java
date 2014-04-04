@@ -25,7 +25,7 @@ public class FinalCart extends Activity implements OnClickListener{
 	
 	//private EditText user, pass;
 	private Button mSubmit;
-	
+	TextView pricefinal;
 	 // Progress Dialog
     private ProgressDialog pDialog;
  
@@ -64,8 +64,9 @@ public class FinalCart extends Activity implements OnClickListener{
 		Log.d("Before Custom Adapter Initialization" , "Bla");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.finalcart);
+		
 		TextView mText = (TextView)findViewById(R.id.carttextview);
-		mText.setText("200");
+		mText.setText("Total Price :"+ Logic.totalprice);
 		Log.d("After Layout Initialization" , "Bla");
 		//setup input fields
 		//user = (EditText)findViewById(R.id.username);
@@ -106,8 +107,8 @@ public class FinalCart extends Activity implements OnClickListener{
             final ListModel sched = new ListModel();
                  
               /******* Firstly take data in model object ******/
-               sched.setCompanyName("--Restaurant--> "+Logic.myitem[i][0]);
-               sched.setUrl("--- ITEMS ---   ");
+               sched.setCompanyName("  Restaurant  "+Logic.myitem[i][0]);
+               sched.setUrl("     ITEMS    ");
                CustomListViewValuesArr.add( sched );
                for(int j=1;j<Logic.myitemc[i]+1;j++)
                {

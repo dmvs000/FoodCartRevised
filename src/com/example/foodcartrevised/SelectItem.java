@@ -8,8 +8,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.foodcartrevised.Login.AttemptLogin;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,11 +16,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 public class SelectItem extends Activity {
 	Unique u;
@@ -34,11 +33,13 @@ public class SelectItem extends Activity {
 	JSONParser jsonParser = new JSONParser();
     JSONParserFetchRes jsonParser1 = new JSONParserFetchRes();
     ConnectionDetector cd;
+    TextView priceview;
 //	AutoCompleteTextView itemselect;
 	private String itemone;
 	Spinner itemitem;
 	String quantity;
 	Spinner qnty;
+	int price=0;
 	//Spinner qtyq;
 	//String qtyitem;
 	ArrayAdapter<String> resadapter;
@@ -50,6 +51,7 @@ public class SelectItem extends Activity {
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     public String getwhat="";
+    int[] temp;
 	
 	
 //	String[] Tycoon={"Idly","Dosa","poori"};
@@ -61,10 +63,17 @@ public class SelectItem extends Activity {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.select_items);
+		priceview=(TextView)findViewById(R.id.priceview);
+		priceview.setText("Price : ");
 
 		String[] Tycoon={"Idly","Dosa","poori"};
 		String[] GreenPark={"Tandoori","Gulabjamun","Rasgulla"};
 		String[] Novotel={"Panipoori","Rasmalai"};
+		int[] tycoonprice={10,20,30};
+		int[] greenprice={45,35,35};
+		int[] novotelprice={20,40};
+		int[] daspallaprice={0,0};
+		
 		String[] Daspalla={"something","npthng"};
 		String[] Qty={"one","two","three","four","five","six"};
 		String test="Tycoon";
@@ -73,6 +82,7 @@ public class SelectItem extends Activity {
 		String test3="Daspalla";
 		quantity=Qty[0];
 		itemone=Novotel[0];
+		
 		itemitem=(Spinner)findViewById(R.id.itemse);
 		resadapter=new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, Novotel);
@@ -87,6 +97,9 @@ public class SelectItem extends Activity {
 	                    int position, long id) {
 	                // On selecting a spinner item
 	                itemone = adapter.getItemAtPosition(position).toString();
+	                price=temp[position];
+	               priceview.setText("Price :"+price);
+	                
 	 
 	                // Showing selected spinner item
 	              //  Toast.makeText(getApplicationContext(),
@@ -113,12 +126,9 @@ public class SelectItem extends Activity {
 		            @Override
 		            public void onItemSelected(AdapterView<?> adapter, View v,
 		                    int position, long id) {
-		                // On selecting a spinner item
+		               
 		                quantity = adapter.getItemAtPosition(position).toString();
 		 
-		                // Showing selected spinner item
-		              //  Toast.makeText(getApplicationContext(),
-		               //         "Selected Country : " + item, Toast.LENGTH_LONG).show();
 		            }
 		 
 		            @Override
@@ -130,6 +140,7 @@ public class SelectItem extends Activity {
 		  
 		  if(Logic.selectedres.equals(test)){
 			  itemone=Tycoon[0];
+			  temp=tycoonprice;
 			  resadapter=new ArrayAdapter<String>(this,
 		                android.R.layout.simple_spinner_item, Tycoon);
 			  resadapter.notifyDataSetChanged();
@@ -140,6 +151,7 @@ public class SelectItem extends Activity {
 		  
 		  if(Logic.selectedres.equals(test1)){
 			  itemone=GreenPark[0];
+			  temp=greenprice;
 			  resadapter=new ArrayAdapter<String>(this,
 		                android.R.layout.simple_spinner_item, GreenPark);
 			  resadapter.notifyDataSetChanged();
@@ -149,6 +161,7 @@ public class SelectItem extends Activity {
 		  
          if(Logic.selectedres.equals(test2)){
         	 itemone=Novotel[0];
+        	 temp=novotelprice;
         	  resadapter=new ArrayAdapter<String>(this,
 		                android.R.layout.simple_spinner_item, Novotel);
 			  resadapter.notifyDataSetChanged();
@@ -156,175 +169,14 @@ public class SelectItem extends Activity {
          }
          if(Logic.selectedres.equals(test3)){
         	 itemone=Daspalla[0];
+        	 temp=daspallaprice;
        	  resadapter=new ArrayAdapter<String>(this,
 		                android.R.layout.simple_spinner_item, Daspalla);
 			  resadapter.notifyDataSetChanged();
 			  itemitem.setAdapter(resadapter);
          }
 		
-		//String test="Tycoon";
-		//String test1="GreenPark";
-		//String test2="Novotel";
 		
-		//String[] numm={"one","two","three","four","five"};
-	//	 qtyadapter=new ArrayAdapter<String>(this,
-      //          android.R.layout.simple_spinner_item, numm);
-        //qtyq.setAdapter(qtyadapter);
-		
-		
-		
-	//	resselect.setAdapter(resadapter);
-        
-        
-        /*qtyq.setOnItemSelectedListener(new OnItemSelectedListener() {
-        	 
-            @Override
-            public void onItemSelected(AdapterView<?> adapter, View v,
-                    int position, long id) {
-                // On selecting a spinner item
-                qtyitem = adapter.getItemAtPosition(position).toString();
- 
-                // Showing selected spinner item
-              //  Toast.makeText(getApplicationContext(),
-               //         "Selected Country : " + item, Toast.LENGTH_LONG).show();
-            }
- 
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
- 
-            }
-        });*/
-		
-	//	 Toast.makeText(SelectItem.this, Logic.selectedres, Toast.LENGTH_LONG).show();
-		//Logic.itemcount=0;
-		//final AutoCompleteTextView itemselect=(AutoCompleteTextView)findViewById(R.id.fooditems);
-		//if(Logic.selectedres.equals(test)){
-			//String[] Tycoon={"Idly","Dosa","poori"};
-			// resadapter=new ArrayAdapter<String>(this,
-	          //      android.R.layout.simple_spinner_item, Tycoon);
-	//	}
-	   //     itemitem.setAdapter(resadapter);
-			
-			
-			
-		//	resselect.setAdapter(resadapter);
-	        
-	        
-	  /*      itemitem.setOnItemSelectedListener(new OnItemSelectedListener() {
-	        	 
-	            @Override
-	            public void onItemSelected(AdapterView<?> adapter, View v,
-	                    int position, long id) {
-	                // On selecting a spinner item
-	                itemone = adapter.getItemAtPosition(position).toString();
-	 
-	                // Showing selected spinner item
-	              //  Toast.makeText(getApplicationContext(),
-	               //         "Selected Country : " + item, Toast.LENGTH_LONG).show();
-	            }
-	 
-	            @Override
-	            public void onNothingSelected(AdapterView<?> arg0) {
-	                // TODO Auto-generated method stub
-	 
-	            }
-	        });   */
-		//}
-		/*else if(Logic.selectedres.equals(test1)){
-			//String[] GreenPark={"Tandoori","Gulabjamun","Rasgulla"};
-			 resadapter=new ArrayAdapter<String>(this,
-	                android.R.layout.simple_spinner_item, GreenPark);
-	  //      itemitem.setAdapter(resadapter);
-		}	
-			
-			
-		//	resselect.setAdapter(resadapter);
-	        
-	        
-	/*        itemitem.setOnItemSelectedListener(new OnItemSelectedListener() {
-	        	 
-	            @Override
-	            public void onItemSelected(AdapterView<?> adapter, View v,
-	                    int position, long id) {
-	                // On selecting a spinner item
-	                itemone = adapter.getItemAtPosition(position).toString();
-	 
-	                // Showing selected spinner item
-	              //  Toast.makeText(getApplicationContext(),
-	               //         "Selected Country : " + item, Toast.LENGTH_LONG).show();
-	            }
-	 
-	            @Override
-	            public void onNothingSelected(AdapterView<?> arg0) {
-	                // TODO Auto-generated method stub
-	 
-	            }
-	        });   */
-			
-		//}
-	//	else if(Logic.selectedres.equals(test2)){
-		//	String[] Novotel={"Panipoori","Rasmalai"};
-		//	 resadapter=new ArrayAdapter<String>(this,
-	      //          android.R.layout.simple_spinner_item, Novotel);
-	   //     itemitem.setAdapter(resadapter);
-	//	}	
-			
-			
-		//	resselect.setAdapter(resadapter);
-	        
-	        
-	/*        itemitem.setOnItemSelectedListener(new OnItemSelectedListener() {
-	        	 
-	            @Override
-	            public void onItemSelected(AdapterView<?> adapter, View v,
-	                    int position, long id) {
-	                // On selecting a spinner item
-	                itemone = adapter.getItemAtPosition(position).toString();
-	 
-	                // Showing selected spinner item
-	              //  Toast.makeText(getApplicationContext(),
-	               //         "Selected Country : " + item, Toast.LENGTH_LONG).show();
-	            }
-	 
-	            @Override
-	            public void onNothingSelected(AdapterView<?> arg0) {
-	                // TODO Auto-generated method stub
-	 
-	            }
-	        });   */
-			
-	//	}
-		
-		
-			
-		/*String[] Novotel={"Panipoori","Rasmalai"};
-			ArrayAdapter<String> resadapterb=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Novotel);
-			itemselect.setAdapter(resadapterb);  */
-			
-		
-		
-		
-/*		itemitem.setAdapter(resadapter);
-		  itemitem.setOnItemSelectedListener(new OnItemSelectedListener() {
-	        	 
-	            @Override
-	            public void onItemSelected(AdapterView<?> adapter, View v,
-	                    int position, long id) {
-	                // On selecting a spinner item
-	                itemone = adapter.getItemAtPosition(position).toString();
-	 
-	                // Showing selected spinner item
-	              //  Toast.makeText(getApplicationContext(),
-	               //         "Selected Country : " + item, Toast.LENGTH_LONG).show();
-	            }
-	 
-	            @Override
-	            public void onNothingSelected(AdapterView<?> arg0) {
-	                // TODO Auto-generated method stub
-	 
-	            }
-	        });     */
 		
 		
 		Button anoitem=(Button)findViewById(R.id.anotheritem);
@@ -333,9 +185,11 @@ public class SelectItem extends Activity {
 			@Override
 			public void onClick(View v) {
 			//	item=itemselect.getText().toString();
-				int vamsi=Logic.itemcount;
-					Logic.items[Logic.rescount][vamsi]=itemone;
-			//		Logic.qty[Logic.rescount][vamsi]=qtyitem;
+				int va=Logic.itemcount;
+					Logic.items[Logic.rescount][va]=itemone;
+					Logic.price[Logic.rescount][va]=price;
+					Logic.totalprice=Logic.totalprice+price;
+					Logic.qty[Logic.rescount][va]=quantity;
 					Logic.itemcount++;
 	//				itemselect.setText("");
 					cd = new ConnectionDetector(getApplicationContext());
@@ -366,8 +220,10 @@ public class SelectItem extends Activity {
 			public void onClick(View v) {
 	//			item=itemselect.getText().toString();
 				int krish=Logic.itemcount;
-				//Logic.qty[Logic.rescount][krish]=qtyitem;
+				Logic.qty[Logic.rescount][krish]=quantity;
 				Logic.items[Logic.rescount][krish]=itemone;
+				Logic.price[Logic.rescount][krish]=price;
+				Logic.totalprice=Logic.totalprice+price;
 				Logic.itemcount++;
 				Logic.rescount++;
 				cd = new ConnectionDetector(getApplicationContext());
@@ -391,16 +247,7 @@ public class SelectItem extends Activity {
 						Toast.makeText(SelectItem.this, "Please Check You Internet Connectivity!", Toast.LENGTH_LONG).show();
 					}
 				
-				//Intent arselect=new Intent(SelectItem.this,SelectRes.class);
-				//startActivity(arselect);
-				//finish();
-//					Bundle b=new Bundle();
-					//	b.putParcelable("resname",ress);
-					//	iselect.putExtras(b);
-				//	else
-					//{
-						//Toast.makeText(SelectItem.this, "Please Check You Internet Connectivity!", Toast.LENGTH_LONG).show();
-					//}
+			
 				
 			}
 		});
@@ -413,8 +260,10 @@ public class SelectItem extends Activity {
 			public void onClick(View v) {
 		//		item=itemselect.getText().toString();
 				int red=Logic.itemcount;
-				//Logic.qty[Logic.rescount][red]=qtyitem;
+				Logic.qty[Logic.rescount][red]=quantity;
 				Logic.items[Logic.rescount][red]=itemone;
+				Logic.price[Logic.rescount][red]=price;
+				Logic.totalprice=Logic.totalprice+price;
 			//	Logic.itemcount++;
 				cd = new ConnectionDetector(getApplicationContext());
 				isInternetPresent = cd.isConnectingToInternet();
@@ -434,10 +283,7 @@ public class SelectItem extends Activity {
 					{
 						Toast.makeText(SelectItem.this, "Please Check You Internet Connectivity!", Toast.LENGTH_LONG).show();
 					}
-				//new AttemptLogin().execute();
-				//Intent gotocart=new Intent(SelectItem.this,FinalCart.class);
-				//startActivity(gotocart);
-				//finish();
+				
 				}
 				
 			

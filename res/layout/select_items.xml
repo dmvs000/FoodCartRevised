@@ -29,17 +29,6 @@
          android:layout_marginBottom="14dp"
          android:text="Select more items" />
 
-    
-
-      <Button
-          android:id="@+id/gotocart"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:layout_alignParentBottom="true"
-          android:layout_alignParentLeft="true"
-          android:layout_marginBottom="40dp"
-          android:text="Go to Cart" />
-
       <TextView
           android:id="@+id/textView2"
           android:layout_width="wrap_content"
@@ -66,5 +55,22 @@
           android:layout_below="@+id/textView2"
           android:layout_marginTop="14dp"
           android:prompt="@string/qty" />
+
+       <Button
+           android:id="@+id/gotocart"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_alignParentBottom="true"
+           android:layout_alignParentLeft="true"
+           android:text="Go to Cart" />
+
+       <TextView
+           android:id="@+id/priceview"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_centerVertical="true"
+           android:text=" "
+           android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

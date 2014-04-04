@@ -6,6 +6,8 @@ public class Logic {
 	public static int rescount=1;
 	public static String[][] items=new String[20][20];
 	public static String[][] qty=new String[20][20];
+	public static int[][] price=new int[20][20];
+	public static int totalprice=0;
 	public static int itemcount=0;
 	
 	public static String selectedres="";
