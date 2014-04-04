@@ -23,7 +23,35 @@ public class SelectRes extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.select_restaurentss);
-		
+		Button updates=(Button)findViewById(R.id.updates);
+updates.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+		//		 hotel= resselect.getText().toString();
+					
+				// Logic.restaurents[Logic.rescount]=selectres;
+				// Logic.selectedres=selectres;
+				// Logic.myresitemcount=1;
+				 //Logic.myitem[Logic.myrestaurantcount][0]=selectres;
+				// Toast.makeText(SelectRes.this, Logic.selectedres, Toast.LENGTH_LONG).show();
+				 Intent iselect=new Intent(SelectRes.this,TestDatabaseActivity.class);
+				 startActivity(iselect);
+				 
+			//	 if(hotel!=""){
+			//		 Logic.restaurents[Logic.rescount]=hotel;
+				// ress=hotel;
+			//	 Logic.selectedres=hotel;
+			//	Intent iselect=new Intent(SelectRes.this,SelectItem.class);
+			//	Bundle b=new Bundle();
+			//	b.putParcelable("resname",ress);
+			//	iselect.putExtras(b);
+			//	startActivity(iselect);
+			//	finish();
+			//	 }
+				
+			}
+		});
 	
 		
 		select=(Spinner)findViewById(R.id.resss);
