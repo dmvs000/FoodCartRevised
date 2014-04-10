@@ -12,77 +12,68 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class SelectRes extends Activity {
-	public String selectres;
-	private String hotel;
-//	AutoCompleteTextView resselect;
-//	static Parcelable ress;
-	Spinner select;
-	String selectedres;
-	
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.select_restaurentss);
-		Button updates=(Button)findViewById(R.id.updates);
+public String selectres;
+private String hotel;
+// AutoCompleteTextView resselect;
+// static Parcelable ress;
+Spinner select;
+String selectedres;
+
+protected void onCreate(Bundle savedInstanceState) {
+// TODO Auto-generated method stub
+super.onCreate(savedInstanceState);
+setContentView(R.layout.select_restaurentss);
+Button updates=(Button)findViewById(R.id.updates);
 updates.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-		//		 hotel= resselect.getText().toString();
-					
-				// Logic.restaurents[Logic.rescount]=selectres;
-				// Logic.selectedres=selectres;
-				// Logic.myresitemcount=1;
-				 //Logic.myitem[Logic.myrestaurantcount][0]=selectres;
-				// Toast.makeText(SelectRes.this, Logic.selectedres, Toast.LENGTH_LONG).show();
-				 Intent iselect=new Intent(SelectRes.this,TestDatabaseActivity.class);
-				 startActivity(iselect);
-				 
-			//	 if(hotel!=""){
-			//		 Logic.restaurents[Logic.rescount]=hotel;
-				// ress=hotel;
-			//	 Logic.selectedres=hotel;
-			//	Intent iselect=new Intent(SelectRes.this,SelectItem.class);
-			//	Bundle b=new Bundle();
-			//	b.putParcelable("resname",ress);
-			//	iselect.putExtras(b);
-			//	startActivity(iselect);
-			//	finish();
-			//	 }
-				
-			}
-		});
-	
-		
-		select=(Spinner)findViewById(R.id.resss);
-		
-		String[] reslist={	"Tycoon",
-							"GreenPark",
-							"Novotel",
-							"Daspalla",
-							"Laddu Gopal",
-							"Brindavanam",
-							"Sizzlers",
-							"Dominos, Siripruam",
-							"Dominos, Central",
-							"Pizza Hut",
-							"Tandori Inn",
-							"Sai Ram Parlour",
-							"Meghalaya",
-							"Roayal Fort",
-							"Fortune Inn"};
-		selectedres=reslist[0];
-		ArrayAdapter<String> resadapter=new ArrayAdapter<String>(this,
+
+@Override
+public void onClick(View v) {
+// hotel= resselect.getText().toString();
+
+// Logic.restaurents[Logic.rescount]=selectres;
+// Logic.selectedres=selectres;
+// Logic.myresitemcount=1;
+//Logic.myitem[Logic.myrestaurantcount][0]=selectres;
+// Toast.makeText(SelectRes.this, Logic.selectedres, Toast.LENGTH_LONG).show();
+Intent iselect=new Intent(SelectRes.this,TestDatabaseActivity.class);
+startActivity(iselect);
+
+// if(hotel!=""){
+// Logic.restaurents[Logic.rescount]=hotel;
+// ress=hotel;
+// Logic.selectedres=hotel;
+// Intent iselect=new Intent(SelectRes.this,SelectItem.class);
+// Bundle b=new Bundle();
+// b.putParcelable("resname",ress);
+// iselect.putExtras(b);
+// startActivity(iselect);
+// finish();
+// }
+
+}
+});
+
+
+select=(Spinner)findViewById(R.id.resss);
+
+String[] reslist={	"Tycoon",
+"GreenPark",
+"Novotel",
+"Daspalla",
+"Laddu Gopal",
+"Brindavanam"};
+selectedres=reslist[0];
+ArrayAdapter<String> resadapter=new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, reslist);
         select.setAdapter(resadapter);
-		
-		
-		
-	//	resselect.setAdapter(resadapter);
+
+
+
+// resselect.setAdapter(resadapter);
         
         
         select.setOnItemSelectedListener(new OnItemSelectedListener() {
-        	 
+        
             @Override
             public void onItemSelected(AdapterView<?> adapter, View v,
                     int position, long id) {
@@ -100,42 +91,42 @@ updates.setOnClickListener(new View.OnClickListener() {
  
             }
         });
-		
-		
-		Button resbu=(Button)findViewById(R.id.res_proceed);
-		resbu.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-		//		 hotel= resselect.getText().toString();
-					
-				 Logic.restaurents[Logic.rescount]=selectres;
-				 Logic.selectedres=selectres;
-				 Logic.myresitemcount=1;
-				 Logic.myitem[Logic.myrestaurantcount][0]=selectres;
-				// Toast.makeText(SelectRes.this, Logic.selectedres, Toast.LENGTH_LONG).show();
-				 Intent iselect=new Intent(SelectRes.this,SelectItem.class);
-				 startActivity(iselect);
-						finish();
-				 
-			//	 if(hotel!=""){
-			//		 Logic.restaurents[Logic.rescount]=hotel;
-				// ress=hotel;
-			//	 Logic.selectedres=hotel;
-			//	Intent iselect=new Intent(SelectRes.this,SelectItem.class);
-			//	Bundle b=new Bundle();
-			//	b.putParcelable("resname",ress);
-			//	iselect.putExtras(b);
-			//	startActivity(iselect);
-			//	finish();
-			//	 }
-				
-			}
-		});
-		
-		
-				
-		
+
+
+Button resbu=(Button)findViewById(R.id.res_proceed);
+resbu.setOnClickListener(new View.OnClickListener() {
+
+@Override
+public void onClick(View v) {
+// hotel= resselect.getText().toString();
+
+Logic.restaurents[Logic.rescount]=selectres;
+Logic.selectedres=selectres;
+Logic.myresitemcount=1;
+Logic.myitem[Logic.myrestaurantcount][0]=selectres;
+// Toast.makeText(SelectRes.this, Logic.selectedres, Toast.LENGTH_LONG).show();
+Intent iselect=new Intent(SelectRes.this,SelectItem.class);
+startActivity(iselect);
+finish();
+
+// if(hotel!=""){
+// Logic.restaurents[Logic.rescount]=hotel;
+// ress=hotel;
+// Logic.selectedres=hotel;
+// Intent iselect=new Intent(SelectRes.this,SelectItem.class);
+// Bundle b=new Bundle();
+// b.putParcelable("resname",ress);
+// iselect.putExtras(b);
+// startActivity(iselect);
+// finish();
+// }
+
+}
+});
+
+
+
+
 
 }
 }
